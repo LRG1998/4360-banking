@@ -14,5 +14,6 @@ def create(name: str, password: str, balance: float):
 def lock(name: str):
     for acc in accounts:
         if acc.Name == name:
-            acc.Locked = True
-    pass
+            acc.Locked = not(acc.Locked)
+            
+        pass
