@@ -1,11 +1,11 @@
 from account import Account
-from transaction import *
 
 accounts = []
-
-def create(name: str, password: str, balance: float):
+activeAccount = None
+def create(username : str, name: str, password: str, balance: float):
     accounts.append(Account())
     accounts[-1].Name = name
+    accounts[-1].userName = username
     accounts[-1].Password = password
     accounts[-1].Locked = False
     accounts[-1].Balance = balance
@@ -13,3 +13,9 @@ def create(name: str, password: str, balance: float):
 
 def lock(id: int):
     accounts[id].Locked = not Locked
+
+def fetch(accName:str):
+    for acc in accounts:
+        if acc.userName == accName:
+            return accounts.index(acc)
+            

@@ -1,18 +1,25 @@
 from account import Account
+from security import transferAttempts
 
-def withdraw(acc, amount: float):
-    acc.Balance -= amount
 
-def verify(database, name:str,amount:float):
-    for acc in database.accounts:
-        if acc.Name == name:
-            if acc.Balance>= amount:
-                print("Amount verified")
-                withdraw(acc, amount)
+def verify(account: Account,amount:float):
+    if database[ID].Balance > amount:
+        return True
+    else:
+        return False
+
+def withdraw(account:Account, amount:float):
+    if account.Locked == False:
+        if verify(account, amount):
+            account.Balance -= amount
+        else:
+            print("Unable to verify amount")
+            if transferAttempts < 3:
+                transferAttempts += 1
             else:
-                print("verification failed")
+                account.Locked = True
 
-def deposit(database, name:str, amount:float):
-    for acc in database.accounts:
-        if acc.Name == name:
-            acc.Balance += float("%.2f" % amount)
+
+def deposit(account: Account, amount:float):
+    database[ID].balance += float(amount % "%0.2f")
+

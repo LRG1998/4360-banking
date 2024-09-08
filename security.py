@@ -1,0 +1,3 @@
+loginAttempts = int
+
+transferAttempts = int
