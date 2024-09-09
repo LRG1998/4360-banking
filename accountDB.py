@@ -18,4 +18,10 @@ def fetch(accName:str):
     for acc in accounts:
         if acc.userName == accName:
             return accounts.index(acc)
+
+
+def accountGrab(*args):
+    for acc in accounts:
+        if acc.userName == args[0]:
+            return acc
             

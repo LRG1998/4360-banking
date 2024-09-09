@@ -5,12 +5,11 @@ import auth
 import security
 import os
 
-loggedIn = False
-
 accountdb = accountDB
 
 
 accountdb.create("George123", "George", "12345", 100.00)
+accountdb.create("Joshua246", "Joshua", "JustLogMeIn", 1000.00)
 
    
 
@@ -34,8 +33,7 @@ def login():
     loginName = input("Enter username...  ")
     password = input("Enter Password...  ")
     if auth.valid(loginName, password):
-        loggedIn = True
-        live = True
+        accountdb.activeAccount = accountdb.accountGrab(loginName)
     else:
         if security.loginAttempts >=3:
             accountdb.lock(accountdb.accounts.index(accountdb.fetch(loginName)))
@@ -52,6 +50,14 @@ def close():
             else:
                 pass
 
+def getActive():
+    return accountdb.activeAccount
+
+def clearActive():
+    accountdb.activeAccount = None
+
+def setNewActive():
+    accountdb.activeAccount = accountdb.accounts[-1]
 
 
 def quit():
