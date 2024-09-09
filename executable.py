@@ -69,7 +69,7 @@ def accountHandle(response):
             withdrawMenu()
             pass
         case "3":
-            
+            transferMenu()
             pass
         case "4":
             index.accountdb.accounts.pop(index.getActive())
@@ -89,7 +89,11 @@ def accountHandle(response):
 
 
 def transferMenu():
-    toAcc = input("Who are you transferring to?")
+    toAcc = input("Who are you transferring to? ")
+    amount = input("How much do you want to transfer? ")
+    transaction.transfer(index.getActive(),index.accountdb.accounts[index.accountdb.fetch(toAcc)],amount)
+    clear()
+    accountMenu()
 
 
 
