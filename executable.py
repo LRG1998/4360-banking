@@ -3,6 +3,7 @@ import accountDB
 import os
 import transaction
 import auth
+import security
 from time import sleep
 
 def clear():
@@ -24,9 +25,16 @@ def mainHandle(response):
     match response:
         case "1":
             clear()
-            index.login()
-            clear()
-            accountMenu()
+            loginName = input("Enter username...  ")
+            password = input("Enter Password...  ")
+            if auth.valid(loginName, password):
+                index.accountdb.activeAccount = index.accountdb.accountGrab(loginName)
+                clear()
+                accountMenu()
+            else:
+                security.loginAttempts +=1
+                main()
+
         case "2":
             clear()
             createMenu()

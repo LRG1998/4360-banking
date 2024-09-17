@@ -11,7 +11,6 @@ accountdb = accountDB
 accountdb.create("George123", "George", "12345", 100.00)
 accountdb.create("Joshua246", "Joshua", "JustLogMeIn", 1000.00)
 
-   
 
 def create():
     loginName = input("Enter new username:  ")
@@ -29,14 +28,13 @@ def create():
 
 
 
-def login():
-    loginName = input("Enter username...  ")
-    password = input("Enter Password...  ")
-    if auth.valid(loginName, password):
-        accountdb.activeAccount = accountdb.accountGrab(loginName)
+def login(username, password):
+    accountdb.activeAccount = accountdb.accountGrab(loginName)
+        
+    if security.loginAttempts >=3:
+        accountdb.lock(accountdb.accounts.index(accountdb.fetch(loginName)))
     else:
-        if security.loginAttempts >=3:
-            accountdb.lock(accountdb.accounts.index(accountdb.fetch(loginName)))
+        security.loginAttempts +=1
         
 
 
