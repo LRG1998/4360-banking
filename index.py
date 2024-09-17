@@ -30,14 +30,22 @@ def create():
 
 
 def login():
+    
+   
     loginName = input("Enter Username...  ")
     password = input("Enter Password...  ")
     if auth.valid(loginName, password):
         accountdb.activeAccount = accountdb.accountGrab(loginName)
+        return
     else:
-        if security.loginAttempts >=3:
-            accountdb.lock(accountdb.accounts.index(accountdb.fetch(loginName)))
+        print("Invalid username or password. Try again.")
+        security.loginAttempts +=1
         
+
+    if security.loginAttempts >= 3:
+        accountdb.lock(accountdb.accounts.index(accountdb.fetch(loginName)))
+    else:
+        login()
 
 
 def close():
