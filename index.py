@@ -4,7 +4,7 @@ from transaction import *
 import auth
 import security
 import os
-
+import sys
 accountdb = accountDB
 
 
@@ -30,22 +30,27 @@ def create():
 
 
 def login():
-    
-   
+
+        
+
     loginName = input("Enter Username...  ")
     password = input("Enter Password...  ")
+    if security.loginAttempts >= 3:
+        try:
+            accountdb.lock(accountdb.fetch(loginName))
+            print("This account is now Locked because of excessive login attempts")
+        except Exception as e:
+            print("This account doesn't exist")
+            quit()
+
     if auth.valid(loginName, password):
         accountdb.activeAccount = accountdb.accountGrab(loginName)
         return
     else:
         print("Invalid username or password. Try again.")
-        security.loginAttempts +=1
-        
-
-    if security.loginAttempts >= 3:
-        accountdb.lock(accountdb.accounts.index(accountdb.fetch(loginName)))
-    else:
+        security.loginAttempts += 1
         login()
+    
 
 
 def close():
@@ -55,8 +60,12 @@ def close():
         for acc in accountdb.accounts:
             if acc.Username == verifyName and acc.Password == verifyPassword:
                 accountdb.accounts.pop(accountdb.accounts.index(acc))
+                accountdb.activeAccount = None
+                return
             else:
                 pass
+    else:
+        print("Invalid username or password.")
 
 def getActive():
     return accountdb.activeAccount
@@ -64,10 +73,10 @@ def getActive():
 def clearActive():
     accountdb.activeAccount = None
 
-def set_new_active():
+def setNewActive():
     accountdb.activeAccount = accountdb.accounts[-1]
 
 
 def quit():
-    pass
+    sys.exit()
    

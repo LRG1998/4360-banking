@@ -72,7 +72,9 @@ def accountHandle(response):
             transferMenu()
             pass
         case "4":
-            index.accountdb.accounts.pop(index.getActive())
+            active_account = index.getActive()
+            if active_account:
+                index.accountdb.accounts.pop(index.accountdb.accounts.index(active_account))
             pass
         case "5":
             index.clearActive()
@@ -86,7 +88,6 @@ def accountHandle(response):
             clear()
             accountMenu()
             pass
-
 
 def transferMenu():
     toAcc = input("Who are you transferring to? ")

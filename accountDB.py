@@ -10,9 +10,11 @@ def create(Username : str, name: str, password: str, balance: float):
     accounts[-1].Locked = False
     accounts[-1].Balance = balance
 
-
 def lock(id: int):
-    accounts[id].Locked = not Locked
+    if 0 <= id < len(accounts):
+        accounts[id].Locked = not accounts[id].Locked
+    else:
+        raise IndexError("Invalid account ID")
 
 def fetch(accName:str):
     for acc in accounts:
