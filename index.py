@@ -56,7 +56,7 @@ def getActive():
 def clearActive():
     accountdb.activeAccount = None
 
-def setNewActive():
+def set_new_active():
     accountdb.activeAccount = accountdb.accounts[-1]
 
 
