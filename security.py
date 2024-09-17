@@ -1,3 +1,3 @@
-loginAttempts = int
+loginAttempts = 0
 
-transferAttempts = int
+transferAttempts = 0
