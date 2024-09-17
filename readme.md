@@ -13,10 +13,10 @@ The application will open a menu at startup where you can either log in, create 
 
 There will be 2 premade accounts
 ```
-UserName George123
+Username George123
 Password 12345
 
-UserName Joshua246
+Username Joshua246
 Password JustLogMeIn
 ```
 

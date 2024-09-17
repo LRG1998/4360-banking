@@ -37,7 +37,7 @@ def mainHandle(response):
             main()
 
 def createMenu():
-    newUName = input("Enter a username: ")
+    newUName = input("Enter a Username: ")
     newPassword = input("Enter your password: ")
     if not auth.valid(newUName, newPassword):
         newName = input("Enter your name: ")

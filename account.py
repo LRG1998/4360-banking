@@ -1,6 +1,6 @@
 class Account():
     Name = ""
-    userName = ""
+    Username = ""
     Password = ""
     Locked = False
     Balance = 0.00

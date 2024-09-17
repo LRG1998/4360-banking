@@ -2,10 +2,10 @@ from account import Account
 
 accounts = []
 activeAccount = None
-def create(username : str, name: str, password: str, balance: float):
+def create(Username : str, name: str, password: str, balance: float):
     accounts.append(Account())
     accounts[-1].Name = name
-    accounts[-1].userName = username
+    accounts[-1].Username = Username
     accounts[-1].Password = password
     accounts[-1].Locked = False
     accounts[-1].Balance = balance
@@ -16,12 +16,12 @@ def lock(id: int):
 
 def fetch(accName:str):
     for acc in accounts:
-        if acc.userName == accName:
+        if acc.Username == accName:
             return accounts.index(acc)
 
 
 def accountGrab(*args):
     for acc in accounts:
-        if acc.userName == args[0]:
+        if acc.Username == args[0]:
             return acc
             

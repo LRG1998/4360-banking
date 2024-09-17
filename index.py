@@ -14,7 +14,7 @@ accountdb.create("Joshua246", "Joshua", "JustLogMeIn", 1000.00)
    
 
 def create():
-    loginName = input("Enter new username:  ")
+    loginName = input("Enter new Username:  ")
     if loginName == None:
         os.system('cls')
         create()
@@ -30,7 +30,7 @@ def create():
 
 
 def login():
-    loginName = input("Enter username...  ")
+    loginName = input("Enter Username...  ")
     password = input("Enter Password...  ")
     if auth.valid(loginName, password):
         accountdb.activeAccount = accountdb.accountGrab(loginName)
@@ -41,11 +41,11 @@ def login():
 
 
 def close():
-    verifyName = input("Enter username to verify:  ")
+    verifyName = input("Enter Username to verify:  ")
     verifyPassword = input("Enter password to verify:  ")
     if auth.valid(verifyName, verifyPassword):
         for acc in accountdb.accounts:
-            if acc.userName == verifyName and acc.Password == verifyPassword:
+            if acc.Username == verifyName and acc.Password == verifyPassword:
                 accountdb.accounts.pop(accountdb.accounts.index(acc))
             else:
                 pass
